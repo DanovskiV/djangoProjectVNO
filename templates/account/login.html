@@ -1,0 +1,18 @@
+{% extends "../base.html" %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+  <form method="post" action="." class="form-auth" align="center">
+  <h2>Авторизация</h2>
+
+        {{ form.as_p }}
+        {% csrf_token %}
+
+   <div class="form-group">
+      <br><input type="submit" class="btn btn-lg btn-success"></input>
+  </div>
+  <div class="sign_in_helper">
+      <p>Нет аккаунта?  <a href="{% url 'register' %}">Давайте создадим!</a></p>
+  </div>
+</form>
+
+{% endblock %}

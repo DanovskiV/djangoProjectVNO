@@ -1,0 +1,51 @@
+{% extends "../base.html" %}
+{% block content %}
+
+    <h2>{{ question.title }}</h2>
+    <div class="content">
+      <div class="author">
+        <small>Опубликовано {{ question.publish }} пользователем {{ question.name }}</small>
+      </div>
+      <div class="text">
+        <h5>{% autoescape off %}
+        {{ question.body }}
+{#        {{ post.body|linebreaks }}#}
+        {% endautoescape %}</h5>
+      </div>
+
+    {% with answers.count as total_comments %}
+        <h2>
+            {{ total_comments }} ответов {{ total_comments|pluralize }}
+        </h2>
+    {% endwith %}
+
+    {% for answer in answers %}
+    <div class="comment">
+        <small>
+            Ответ {{ forloop.counter }} опубликован {{ answer.name }}
+            {{ answer.created }}
+        </small>
+        <h5>{{ answer.body|linebreaks }}</h5>
+    </div>
+    {% empty %}
+        <p>Еще никто не дал ответа на вопрос. Будьте первым!</p>
+    {% endfor %}
+
+
+    {% if new_answer %}
+    <h2>Your comment has been added.</h2>
+    {% else %}
+        <h2>Ответить на вопрос</h2>
+        <form action="." method="post">
+            {{ answer_form.as_p }}
+            {% csrf_token %}
+            <div class="form-group">
+                <br><button type="submit" class="btn btn-lg btn-success">Опубликовать</button>
+            </div>
+        </form>
+    {% endif %}
+
+    </div>
+
+
+{% endblock %}

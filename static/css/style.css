@@ -1,0 +1,88 @@
+@font-face {
+	font-family: 'Roboto'; 
+	src: url(roboto-light.ttf); 
+}
+
+.navbar-brand {
+	padding-left: 30px;
+}
+
+.nav-item {
+	padding-left: 20px;
+}
+
+.form-inline {
+	padding-right: 30px;
+}
+
+.content {
+  margin:0% 25% 0% 25%;
+  width:50%;
+}
+
+.form-auth {
+	padding-top: 90px;
+}
+
+.form-reg {
+	padding-top: 30px;
+}
+
+.author {
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.first {
+	padding-top: 30px;
+}
+
+.last {
+	padding-bottom: -10px;
+}
+
+.sign_in_helper {
+	padding-top: 10px;
+}
+
+.article {
+	padding-top: 40px;
+}
+
+.comment {
+	padding-top: 40px;
+}
+
+.form-comment {
+	padding-bottom: 100px;
+}
+
+.form-quest {
+	padding-top: 50px;
+}
+
+.search {
+	padding-top: 40px;
+}
+
+.filters {
+	padding-top: 20px;
+}
+
+.pagination {
+	padding-top: 30px;
+	padding-bottom: 50px;
+}
+
+h2 {
+	padding-top: 100px;
+	text-align: center;
+}
+
+.scale {
+  transition: 0.7s; 
+}
+
+.scale:hover {
+  transform: scale(1.05);
+}

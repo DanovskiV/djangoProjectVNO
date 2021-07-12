@@ -1,0 +1,29 @@
+{% extends "../../base.html" %}
+
+{% block content %}
+<h2>Статьи</h2>
+<div class="content">
+  <div class="components">
+    <div class="search">
+      <div class="input-group">
+        <input type="search" class="form-control rounded" placeholder="Введите название статьи" aria-label="Search"
+          aria-describedby="search-addon" />
+        <button type="button" class="btn btn-success">Найти</button>
+      </div>
+    </div>
+    <div class="filters">
+      <button type="button" class="btn btn-success">По алфавиту</button>
+      <button type="button" class="btn btn-success">По новизне</button>
+    </div>
+  </div>
+    {% for post in posts %}
+        <div class="article scale">
+            <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
+            <small>Опубликовано {{ post.publish }} года пользователем {{ post.author }}</small>
+            <p>{{ post.body|truncatewords:30|linebreaks }}</p>
+{#            <small>Комментариев: 0</small>#}
+        </div>
+    {% endfor %}
+    {% include "../../includes/pagination.html" with page=page_obj %}
+</div>
+{% endblock %}

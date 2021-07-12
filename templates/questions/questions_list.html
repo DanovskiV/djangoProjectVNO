@@ -1,0 +1,39 @@
+{% extends "../base.html" %}
+
+{% block content %}
+
+{#    {% if new_question %}#}
+{#    <h2>Your comment has been added.</h2>#}
+{#    {% else %}#}
+{#    <h2>Задайте вопрос</h2>#}
+{#        <form action="." method="post">#}
+{#            {{ question_form.as_p }}#}
+{#            {% csrf_token %}#}
+{#            <p><input type="submit" value="Задать вопрос"></p>#}
+{#        </form>#}
+{#    {% endif %}#}
+
+    <h2>Вопросы</h2>
+<div class="content">
+  <div class="components">
+    <div class="search">
+      <div class="input-group">
+        <input type="search" class="form-control rounded" placeholder="Введите ключевые слова" aria-label="Search"
+          aria-describedby="search-addon" />
+        <button type="button" class="btn btn-success">Найти</button>
+      </div>
+    </div>
+  </div>
+
+    {% for question in questions %}
+        <div class="article scale">
+            <a href="{{ question.get_absolute_url }}"><h4>{{ question.title }}</h4></a>
+            <small>Опубликовано {{ question.publish }} пользователем {{ question.author }}</small>
+           {{ question.body|truncatewords:30|linebreaks }}
+            <small>Ответов: 0</small>
+        </div>
+    {% endfor %}
+
+</div>
+    {% include "../includes/pagination.html" with page=page_obj %}
+{% endblock %}

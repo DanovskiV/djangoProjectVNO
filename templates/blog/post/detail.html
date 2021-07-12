@@ -1,0 +1,51 @@
+{% extends "../../base.html" %}
+
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <div class="content">
+      <div class="author">
+        <small>Опубликовано {{ post.publish }} пользователем {{ post.author }}</small>
+      </div>
+      <div class="text">
+        {% autoescape off %}
+        {{ post.body }}
+{#        {{ post.body|linebreaks }}#}
+        {% endautoescape %}
+      </div>
+    <h2>Комментарии</h2>
+
+    {% with comments.count as total_comments %}
+        <h2>
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h2>
+    {% endwith %}
+
+    {% for comment in comments %}
+    <div class="comment">
+        <h4>{{ comment.body|linebreaks }}</h4>
+        <small>
+            Комментарий {{ forloop.counter }} Опубликован {{ comment.created }}
+            пользователем{{ comment.name }}
+        </small>
+    </div>
+    {% empty %}
+        <h4>Здесь еще нет комментариев. Станьте первым!</h4>
+    {% endfor %}
+
+    {% if new_comment %}
+    <h2>Ваш комментарий был добавлеен.</h2>
+    {% else %}
+        <h2>Оставьте комментарий</h2>
+        <form action="." method="post" class="form-comment" align="center">
+            {% for field in comment_form %}
+                {{ field }}
+            {% endfor %}
+            {#            {{ comment_form.as_p }}#}
+            {% csrf_token %}
+            <div class="form-group">
+                <br><button type="submit" class="btn btn-lg btn-success">Опубликовать</button>
+            </div>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}
