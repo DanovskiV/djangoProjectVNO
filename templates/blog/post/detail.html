@@ -25,7 +25,7 @@
         <h4>{{ comment.body|linebreaks }}</h4>
         <small>
             Комментарий {{ forloop.counter }} Опубликован {{ comment.created }}
-            пользователем{{ comment.name }}
+            пользователем {{ comment.name }}
         </small>
     </div>
     {% empty %}
