@@ -44,8 +44,8 @@ class Answer(models.Model):
     class Meta:
         ordering = ('created',)
 
-    def __str__(self):
-        return 'Answered by {} on {}'.format(self.name, self.answer)
+    # def __str__(self):
+    #     return 'Answered by {} on {}'.format(self.name, self.answer)
 
 
 class QuestionForm(forms.ModelForm):

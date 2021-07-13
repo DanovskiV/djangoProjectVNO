@@ -22,24 +22,6 @@ def questions_list(request):
     except EmptyPage:
         questions = paginator.page(paginator.num_pages)
 
-    # if request.method == 'POST':
-    #     # A comment was posted
-    #     question_form = AnswerForm(data=request.POST)
-    #     if question_form.is_valid():
-    #         # Create Comment object but don't save to database yet
-    #         new_question = question_form.save(commit=False)
-    #         # Assign the current post to the comment
-    #         new_question.answer = object_list
-    #         # Save the comment to the database
-    #         new_question.save()
-    # else:
-    #     question_form = QuestionForm(data=request.POST)
-
-    # return render(request,
-    #               'questions/questions_list.html',
-    #               {'page': page,
-    #                'questions': questions,
-    #                'questions_form': question_form})
     return render(request,
                   'questions/questions_list.html',
                   {'page': page,
@@ -54,7 +36,7 @@ def question_detail(request, year, month, day, question):
                                  publish__day=day)
     # List of active comments for this post
     answers = question.answers.filter(active=True)
-
+    print(answers)
     if request.method == 'POST':
 
         answer_form = AnswerForm(data=request.POST)
@@ -62,13 +44,8 @@ def question_detail(request, year, month, day, question):
             if request.user.is_authenticated:
                 new_answer = answer_form.save(commit=False)
                 new_answer.name = request.user.username
-                new_answer.question = question
+                new_answer.answer = question
                 new_answer.save()
-                return render(request,
-                              'questions/question_detail.html',
-                              {'question': question,
-                               'answers': answers,
-                               'answer_form': answer_form})
     else:
         answer_form = AnswerForm()
     return render(request,
@@ -88,6 +65,7 @@ def ask_question(request):
             if request.user.is_authenticated:
                 new_question = question_form.save(commit=False)
                 new_question.author = request.user
+                new_question.slag = new_question.title
                 new_question.save()
             else:
                 question_form = QuestionForm()
