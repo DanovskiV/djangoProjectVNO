@@ -6,23 +6,13 @@
     {% for field in question_form %}
         {{ field }}
     {% endfor %}
-            {% csrf_token %}
+    {% csrf_token %}
 
-  <div class="form-group first">
-    <div class="col-sm-6">
-      <input type="text" class="form-control"  placeholder="Введите заголовок вопроса">
-    </div>
-  </div>
-  <div class="form-group last">
-    <div class="col-sm-6">
-      <textarea type="text" class="form-control"  placeholder="Введите ваш вопрос" rows="5"></textarea>
-    </div>
-  </div>
    <div class="form-group">
       <br><button type="submit" class="btn btn-lg btn-success">Подтвердить</button>
   </div>
   <div class="sign_in_helper">
-      <p>Или найдите ответ на ваш вопрос  <a href="file:///home/katsapvlad/Projects/VNO/questions.html">тут!</a></p>
+      <p>Или найдите ответ на ваш вопрос  <a href="/">тут!</a></p>
   </div>
 </form>
 

@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.QuestionsListView.as_view(), name='questions_list'),
+    url(r'^$', views.QuestionsListView.as_view(), name='ask'),
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/' \
             r'(?P<question>[-\w]+)/$',
             views.question_detail, name='question_detail'),

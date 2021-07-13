@@ -22,24 +22,28 @@ def questions_list(request):
     except EmptyPage:
         questions = paginator.page(paginator.num_pages)
 
-    if request.method == 'POST':
-        # A comment was posted
-        question_form = AnswerForm(data=request.POST)
-        if question_form.is_valid():
-            # Create Comment object but don't save to database yet
-            new_question = question_form.save(commit=False)
-            # Assign the current post to the comment
-            new_question.answer = object_list
-            # Save the comment to the database
-            new_question.save()
-    else:
-        question_form = QuestionForm(data=request.POST)
+    # if request.method == 'POST':
+    #     # A comment was posted
+    #     question_form = AnswerForm(data=request.POST)
+    #     if question_form.is_valid():
+    #         # Create Comment object but don't save to database yet
+    #         new_question = question_form.save(commit=False)
+    #         # Assign the current post to the comment
+    #         new_question.answer = object_list
+    #         # Save the comment to the database
+    #         new_question.save()
+    # else:
+    #     question_form = QuestionForm(data=request.POST)
 
+    # return render(request,
+    #               'questions/questions_list.html',
+    #               {'page': page,
+    #                'questions': questions,
+    #                'questions_form': question_form})
     return render(request,
                   'questions/questions_list.html',
                   {'page': page,
-                   'questions': questions,
-                   'questions_form': question_form})
+                   'questions': questions})
 
 
 def question_detail(request, year, month, day, question):
@@ -71,11 +75,19 @@ def question_detail(request, year, month, day, question):
 
 
 def ask_question(request):
+    object_list = Question.objects.all()
     if request.method == 'POST':
         # A comment was posted
-        question_form = QuestionForm(data=request.POST)
+        question_form = AnswerForm(data=request.POST)
+        if question_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_question = question_form.save(commit=False)
+            # Assign the current post to the comment
+            new_question.answer = object_list
+            # Save the comment to the database
+            new_question.save()
     else:
-        question_form = QuestionForm()
+        question_form = QuestionForm(data=request.POST)
 
     return render(request,
                   'questions/question_ask.html',
