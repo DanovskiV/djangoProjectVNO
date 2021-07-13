@@ -1,7 +1,7 @@
 {% extends "../base.html" %}
 {% block content %}
 
-<form class="form-quest" align="center" action="." method="post">
+<form class="form-quest" align="center" action="/questions/ask" method="POST">
     <h2>Ваш вопрос</h2>
     {% for field in question_form %}
         {{ field }}
@@ -9,7 +9,8 @@
     {% csrf_token %}
 
    <div class="form-group">
-      <br><button type="submit" class="btn btn-lg btn-success">Подтвердить</button>
+       <br>
+       <input type="submit" class="btn btn-lg btn-success">
   </div>
   <div class="sign_in_helper">
       <p>Или найдите ответ на ваш вопрос  <a href="/">тут!</a></p>
