@@ -32,20 +32,26 @@
         <h4>Здесь еще нет комментариев. Станьте первым!</h4>
     {% endfor %}
 
-    {% if new_comment %}
-    <h2>Ваш комментарий был добавлеен.</h2>
-    {% else %}
-        <h2>Оставьте комментарий</h2>
-        <form action="." method="post" class="form-comment" align="center">
-            {% for field in comment_form %}
-                {{ field }}
-            {% endfor %}
-            {#            {{ comment_form.as_p }}#}
-            {% csrf_token %}
-            <div class="form-group">
-                <br><button type="submit" class="btn btn-lg btn-success">Опубликовать</button>
-            </div>
-        </form>
+    {% if request.user.is_authenticated %}
+        {% if new_comment %}
+        <h2>Ваш комментарий был добавлеен.</h2>
+        {% else %}
+            <h2>Оставьте комментарий</h2>
+            <form action="." method="post" class="form-comment" align="center">
+                {% for field in comment_form %}
+                    {{ field }}
+                {% endfor %}
+                {#            {{ comment_form.as_p }}#}
+                {% csrf_token %}
+                <div class="form-group">
+                    <br><button type="submit" class="btn btn-lg btn-success">Опубликовать</button>
+                </div>
+            </form>
+        {% endif %}
+        {% else %}
+        <h2>Чтобы добавить комментарий <a href="{% url 'login' %}">авторизируйтесь!</a>
+            Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь.</a></h2>
     {% endif %}
+
     </div>
 {% endblock %}

@@ -21,7 +21,7 @@ class UserRegistrationForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'text',
                                                              'class': 'form-group first col-sm-3 form-control',
-                                                             'placeholder': 'Ваш email'}))
+                                                             'placeholder': 'Ваше имя пользователя'}))
     password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'type': 'password',
                                                              'class': 'form-group last col-sm-3 form-control',
                                                              'placeholder': 'Ваш пароль'}))
