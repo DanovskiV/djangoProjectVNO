@@ -18,6 +18,7 @@
     <form class="form-inline my-2 my-lg-0">
         {% if request.user.is_authenticated %}
             <a class="btn btn-success my-2 my-sm-0" href="/">{{ request.user.username }}</a>
+            <a class="btn btn-deny my-2 my-sm-0" href="{% url 'logout' %}">Выход</a>
         {% else %}
       <a class="btn btn-success my-2 my-sm-0" href="{% url 'login' %}">Войти</a>
         {% endif %}

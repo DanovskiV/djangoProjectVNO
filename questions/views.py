@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.text import slugify
 from django.views.generic import ListView
 from .models import Question, Answer, QuestionForm, AnswerForm
 
@@ -65,7 +66,9 @@ def ask_question(request):
             if request.user.is_authenticated:
                 new_question = question_form.save(commit=False)
                 new_question.author = request.user
-                new_question.slag = new_question.title
+                # # new_question.slag = new_question.title
+                # new_question.slag = slugify(new_question.title)
+                # print(new_question.slag, new_question.title)
                 new_question.save()
             else:
                 question_form = QuestionForm()

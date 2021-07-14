@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 class Question (models.Model):
@@ -18,6 +19,10 @@ class Question (models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='open')
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Question, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ('-publish',)
