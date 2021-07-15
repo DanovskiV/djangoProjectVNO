@@ -5,17 +5,18 @@
 <div class="content">
   <div class="components">
     <div class="search">
-      <div class="input-group">
-        <input type="search" class="form-control rounded" placeholder="Введите название статьи" aria-label="Search"
+      <form  action="" method="get" class="input-group">
+        <input type="text" name="q" class="form-control rounded" placeholder="Введите название статьи или ключевые слова" aria-label="Search"
           aria-describedby="search-addon" />
-        <button type="button" class="btn btn-success">Найти</button>
-      </div>
+        <button type="submit" class="btn btn-success">Найти</button>
+      </form>
     </div>
     <div class="filters">
       <button type="button" class="btn btn-success">По алфавиту</button>
       <button type="button" class="btn btn-success">По новизне</button>
     </div>
   </div>
+
     {% for post in posts %}
         <div class="article scale">
             <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
@@ -24,6 +25,7 @@
 {#            <small>Комментариев: 0</small>#}
         </div>
     {% endfor %}
+
     {% include "../../includes/pagination.html" with page=page_obj %}
 </div>
 {% endblock %}

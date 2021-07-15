@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment, CommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -10,11 +11,30 @@ class PostListView(ListView):
     paginate_by = 10
     template_name = 'blog/post/list.html'
 
+    def get_queryset(self):
+
+        query = self.request.GET.get('q')
+        if query == None:
+            return Post.objects.all()
+        else:
+            return Post.objects.filter(
+                Q(title__icontains=query) or
+                Q(title__contains=query) or
+                Q(title__in=query) or
+                Q(body__icontains=query) or
+                Q(body__in=query) or
+                Q(body__contains=query) or
+                Q(comments__body__icontains=query)
+            )
+
 
 def post_list(request):
-    object_list = Post.objects.all()
+    # object_list = Post.objects.all()
+    object_list = PostListView.queryset
+
     paginator = Paginator(object_list, 10)  # 10 posts in each page
     page = request.GET.get('page')
+
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:

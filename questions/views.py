@@ -3,18 +3,38 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.text import slugify
 from django.views.generic import ListView
 from .models import Question, Answer, QuestionForm, AnswerForm
+from django.db.models import Q
 
 
 class QuestionsListView(ListView):
     queryset = Question.objects.all()
+    # queryset = Question.objects.filter(Q(ans))
     context_object_name = 'questions'
-    paginate_by = 3
+    paginate_by = 10
     template_name = 'questions/questions_list.html'
+
+    def get_queryset(self):
+
+        query = self.request.GET.get('q')
+        if query == None:
+            return Question.objects.all()
+        else:
+            return Question.objects.filter(
+                Q(body__icontains=query) or
+                Q(body__contains=query) or
+                Q(body__in=query) or
+                Q(name__icontains=query) or
+                Q(name__contains=query) or
+                Q(name__in=query) or
+                Q(answers__body__icontains=query)
+            )
 
 
 def questions_list(request):
-    object_list = Question.objects.all()
-    paginator = Paginator(object_list, 3)  # 3 posts in each page
+    # object_list = Question.objects.all()
+    object_list = QuestionsListView.queryset
+
+    paginator = Paginator(object_list, 10)  # 3 posts in each page
     page = request.GET.get('page')
     try:
         questions = paginator.page(page)
