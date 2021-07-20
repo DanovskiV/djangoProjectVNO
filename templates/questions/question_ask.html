@@ -2,7 +2,8 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-    <form class="form-quest" align="center" action="/questions/ask" method="POST">
+    <form class="form-quest" action="/questions/ask" method="POST">
+        <div align="center">
         <h2>Ваш вопрос</h2>
         {% for field in question_form %}
             {{ field }}
@@ -16,10 +17,13 @@
       <div class="sign_in_helper">
           <p>Или найдите ответ на ваш вопрос  <a href="/">тут!</a></p>
       </div>
+  </div>
     </form>
 {% else %}
-    <h2>Чтобы задать вопрос - <a href="{% url 'login' %}">авторизируйтесь!</a>
-            Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь.</a></h2>
+<div class="container my-5" align="center">
+    <h2 class="mb-5">Чтобы задать вопрос - <a href="{% url 'login' %}">авторизуйтесь!</a></h2>
+            <h5>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь.</a></h5>
+        </div>
 {% endif %}
 
 {% endblock %}

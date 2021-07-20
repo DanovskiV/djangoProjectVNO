@@ -1,13 +1,18 @@
-{% extends "base.html" %}
-
+{% extends "../base.html" %}
 {% block title %}Create an account{% endblock %}
-
 {% block content %}
-    <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
-    <form action="." method="post">
+    <form action="." method="post" class="form-auth" align="center">
+        <div align="center">
+            <h2 class="mb-5">Регистрация</h2>
         {{ user_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
+           <div class="form-group">
+      <br><input type="submit" class="btn btn-lg btn-success"></input>
+  </div>
+    <div class="sign_in_helper mb-5">
+      <p>Есть аккаунт?  <a href="{% url 'login' %}">Авторизуйтесь!</a></p>
+  </div>
+    </div>
     </form>
+
 {% endblock %}
