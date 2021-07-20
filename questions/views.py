@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.text import slugify
 from django.views.generic import ListView
@@ -96,10 +96,10 @@ def ask_question(request):
                 return render(request, 'questions/question_ask.html', {
                     'question_form': question_form,
                 })
-
-            return render(request, 'questions/question_ask.html', {
-                      'question_form': question_form,
-                  })
+            return redirect('/questions')
+            # return render(request, 'questions/question_ask.html', {
+            #           'question_form': question_form,
+            #       })
     else:
         question_form = QuestionForm()
 

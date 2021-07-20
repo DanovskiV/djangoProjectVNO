@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .models import LoginForm, UserRegistrationForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -42,9 +42,10 @@ def user_login(request):
                         posts = paginator.page(paginator.num_pages)
 
                     # return HttpResponse('Authenticated successfully')
-                    return render(request, 'blog/post/list.html',
-                                  {'page': page,
-                                   'posts': posts})
+                    # return render(request, 'blog/post/list.html',
+                    #               {'page': page,
+                    #                'posts': posts})
+                    return redirect("/")
                 else:
                     return HttpResponse('Disabled account')
             else:
