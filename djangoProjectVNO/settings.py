@@ -154,6 +154,10 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+WHITENOISE_MIMETYPES = {
+    '.xsl': 'application/xml'
+}
+
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
