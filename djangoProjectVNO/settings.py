@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ris9-+id68+4(5_=&dn-zm*d89e1#yr2!%rajjke!ck6tpi(rq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -155,7 +155,8 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WHITENOISE_MIMETYPES = {
-    '.xsl': 'application/xml'
+    '.xsl': 'application/xml',
+    '.css': 'text/css'
 }
 
 CKEDITOR_CONFIGS = {
