@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'corsheaders',
     'blog',
     'questions',
     'account',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -223,5 +225,7 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 django_heroku.settings(locals())
