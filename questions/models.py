@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.utils.translation import gettext as _
 
 
 class Question (models.Model):
@@ -21,7 +22,7 @@ class Question (models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='open')
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.title, allow_unicode=True)
         super(Question, self).save(*args, **kwargs)
 
     class Meta:

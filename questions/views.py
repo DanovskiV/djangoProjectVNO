@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.views.generic import ListView
 from .models import Question, Answer, QuestionForm, AnswerForm
 from django.db.models import Q
+# from django.utils.translation import gettext as _
 
 
 class QuestionsListView(ListView):
@@ -87,7 +88,7 @@ def ask_question(request):
                 new_question = question_form.save(commit=False)
                 new_question.author = request.user
                 # # new_question.slag = new_question.title
-                # new_question.slag = slugify(new_question.title)
+                # new_question.slag = slugify(_(new_question.title))
                 # print(new_question.slag, new_question.title)
                 new_question.save()
             else:
