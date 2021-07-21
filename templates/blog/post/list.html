@@ -11,12 +11,22 @@
         <button type="submit" class="btn btn-success">Найти</button>
       </form>
     </div>
-    <div class="filters">
-      <button name="sort_by_letters" type="button" class="btn btn-success">По алфавиту</button>
-      <button name="sort_by_date" type="button" class="btn btn-success">По новизне</button>
-    </div>
+    <form method="get" action="." class="filters">
+      <input name="sort_by_letters" type="submit" class="btn btn-success">По алфавиту</input>
+      <input name="sort_by_date" type="submit" class="btn btn-success">По новизне</input>
+    </form>
   </div>
-
+    {% if request.get == "sort_by_latters" %}
+    {% for post in posts|dictsort:'title' %}
+        <div class="article scale">
+            <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
+            <small>Опубликовано {{ post.publish }} года пользователем {{ post.author }}</small>
+            {% autoescape off %}
+            <p>{{ post.body|truncatewords:30|linebreaks }}</p>
+            {% endautoescape %}
+        </div>
+    {% endfor %}
+    {% endif %}
     {% for post in posts %}
         <div class="article scale">
             <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>

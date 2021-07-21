@@ -21,12 +21,15 @@ class QuestionsListView(ListView):
             return Question.objects.all()
         else:
             return Question.objects.filter(
-                Q(body__icontains=query) or
-                Q(body__contains=query) or
-                Q(body__in=query) or
-                Q(name__icontains=query) or
-                Q(name__contains=query) or
-                Q(name__in=query) or
+                Q(body__icontains=query) |
+                Q(body__contains=query) |
+                Q(body__in=query) |
+                Q(title__icontains=query) |
+                Q(title__contains=query) |
+                Q(title__in=query) |
+                Q(answers__name__icontains=query) |
+                Q(answers__name__contains=query) |
+                Q(answers__name__in=query) |
                 Q(answers__body__icontains=query)
             )
 

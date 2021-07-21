@@ -15,15 +15,19 @@ class PostListView(ListView):
 
         query = self.request.GET.get('q')
         if query == None:
-            return Post.objects.all()
+            if self.request.GET.get("sort_by_letters"):
+                return Post.objects.all().order_by("title")
+            else:
+                print("all")
+                return Post.objects.all()
         else:
             return Post.objects.filter(
-                Q(title__icontains=query) or
-                Q(title__contains=query) or
-                Q(title__in=query) or
-                Q(body__icontains=query) or
-                Q(body__in=query) or
-                Q(body__contains=query) or
+                Q(title__icontains=query) |
+                Q(title__contains=query) |
+                Q(title__in=query) |
+                Q(body__icontains=query) |
+                Q(body__in=query) |
+                Q(body__contains=query) |
                 Q(comments__body__icontains=query)
             )
 
@@ -41,6 +45,15 @@ def post_list(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
+    # print(posts)
+    # if request.GET.get("sort_by_date"):
+    #     posts = sort_by_date(request)
+    #     print(posts)
+    #
+    # if request.GET.get("sort_by_letter"):
+    #     posts = sort_by_letter(request)
+    #     print(posts)
+
     return render(request,
                   'blog/post/list.html',
                   {'page': page,
@@ -76,3 +89,10 @@ def post_detail(request, year, month, day, post):
                   'comments': comments,
                   'comment_form': comment_form})
 
+
+def sort_by_date(request):
+    return Post.objects.all().order_by("publish")
+
+
+def sort_by_letter(request):
+    return Post.objects.all().order_by("title")
