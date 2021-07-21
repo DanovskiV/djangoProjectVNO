@@ -14,12 +14,13 @@
       </div>
     <h2>Комментарии</h2>
 
-    {% with comments.count as total_comments %}
-        <h2>
-            {{ total_comments }} comment{{ total_comments|pluralize }}
-        </h2>
-    {% endwith %}
-
+    {% if comments.count != 0 %}
+        {% with comments.count as total_comments %}
+            <h2>
+                {{ total_comments }} comment{{ total_comments|pluralize }}
+            </h2>
+        {% endwith %}
+    {% endif %}
     {% for comment in comments %}
     <div class="comment">
         <h4>{{ comment.body|linebreaks }}</h4>
@@ -29,7 +30,9 @@
         </small>
     </div>
     {% empty %}
+    <div align="center">
         <h4>Здесь еще нет комментариев. Станьте первым!</h4>
+    </div>
     {% endfor %}
 
     {% if request.user.is_authenticated %}
@@ -49,8 +52,10 @@
             </form>
         {% endif %}
         {% else %}
-        <h2>Чтобы добавить комментарий <a href="{% url 'login' %}">авторизируйтесь!</a>
-            Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь.</a></h2>
+<div class="container my-5" align="center">
+    <h2 class="mb-5">Чтобы оставить комментарий - <a href="{% url 'login' %}">авторизуйтесь!</a></h2>
+    <h5>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрируйтесь.</a></h5>
+</div>
     {% endif %}
 
     </div>
