@@ -20,7 +20,7 @@
     {% for post in posts|dictsort:'title' %}
         <div class="article scale">
             <a href="{{ post.get_absolute_url }}"><h4>{{ post.title }}</h4></a>
-            <small>Опубликовано {{ post.publish }} года пользователем {{ post.author }}</small>
+            <small>Опубликовано {{ post.publish }} пользователем {{ post.author }}</small>
             {% autoescape off %}
             <p>{{ post.body|truncatewords:30|linebreaks }}</p>
             {% endautoescape %}
