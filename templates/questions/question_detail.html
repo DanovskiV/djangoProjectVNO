@@ -13,11 +13,13 @@
         {% endautoescape %}</h5>
       </div>
 
-    {% with answers.count as total_comments %}
-        <h2>
-            {{ total_comments }} ответов {{ total_comments|pluralize }}
-        </h2>
-    {% endwith %}
+    {% if answers.count != 0 %}
+        {% with answers.count as total_comments %}
+            <h2>
+                {{ total_comments }} ответов {{ total_comments|pluralize }}
+            </h2>
+        {% endwith %}
+    {% endif %}
 
     {% for answer in answers %}
     <div class="comment">
