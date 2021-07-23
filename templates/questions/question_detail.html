@@ -13,11 +13,13 @@
         {% endautoescape %}</h5>
       </div>
 
-    {% with answers.count as total_comments %}
-        <h2>
-            {{ total_comments }} ответов {{ total_comments|pluralize }}
-        </h2>
-    {% endwith %}
+    {% if answers.count != 0 %}
+        {% with answers.count as total_comments %}
+            <h2>
+                {{ total_comments }} ответов {{ total_comments|pluralize }}
+            </h2>
+        {% endwith %}
+    {% endif %}
 
     {% for answer in answers %}
     <div class="comment">
@@ -28,7 +30,7 @@
         <h5>{{ answer.body|linebreaks }}</h5>
     </div>
     {% empty %}
-        <p>Еще никто не дал ответа на вопрос. Будьте первым!</p>
+        <h4>Еще никто не дал ответа на вопрос. Будьте первым!</h4>
     {% endfor %}
 
     {% if request.user.is_authenticated %}
