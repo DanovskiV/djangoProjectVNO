@@ -30,7 +30,7 @@
         <h5>{{ answer.body|linebreaks }}</h5>
     </div>
     {% empty %}
-        <p>Еще никто не дал ответа на вопрос. Будьте первым!</p>
+        <h4>Еще никто не дал ответа на вопрос. Будьте первым!</h4>
     {% endfor %}
 
     {% if request.user.is_authenticated %}
