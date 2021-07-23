@@ -12,8 +12,8 @@
       </form>
     </div>
     <form method="get" action="." class="filters">
-      <button name="sort_by_letters" type="submit" class="btn btn-success">По алфавиту</button>
-      <button name="sort_by_date" type="submit" class="btn btn-success">По новизне</button>
+      <input name="sort_by_letters" type="submit" value="По алфавиту" class="btn btn-success"/>
+      <input name="sort_by_date" type="submit" value="По новизне" class="btn btn-success"/>
     </form>
   </div>
     {% if request.get == "sort_by_latters" %}
