@@ -6,7 +6,7 @@ from django.views.generic import ListView
 
 
 class PostListView(ListView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.filter(status="published")
     context_object_name = 'posts'
     paginate_by = 10
     template_name = 'blog/post/list.html'
@@ -16,10 +16,10 @@ class PostListView(ListView):
         query = self.request.GET.get('q')
         if query == None:
             if self.request.GET.get("sort_by_letters"):
-                return Post.objects.all().order_by("title")
+                return Post.objects.filter(status="published").order_by("title")
             else:
                 print("all")
-                return Post.objects.all()
+                return Post.objects.filter(status="published")
         else:
             return Post.objects.filter(
                 Q(title__icontains=query) |
@@ -28,7 +28,8 @@ class PostListView(ListView):
                 Q(body__icontains=query) |
                 Q(body__in=query) |
                 Q(body__contains=query) |
-                Q(comments__body__icontains=query)
+                Q(comments__body__icontains=query),
+                status="published"
             )
 
 
@@ -91,8 +92,8 @@ def post_detail(request, year, month, day, post):
 
 
 def sort_by_date(request):
-    return Post.objects.all().order_by("publish")
+    return Post.objects.all().filter(status="published").order_by("publish")
 
 
 def sort_by_letter(request):
-    return Post.objects.all().order_by("title")
+    return Post.objects.filter(status="published").order_by("title")
