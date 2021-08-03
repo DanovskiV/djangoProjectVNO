@@ -230,6 +230,6 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 
 django_heroku.settings(locals())
