@@ -27,7 +27,7 @@ SECRET_KEY = 'ris9-+id68+4(5_=&dn-zm*d89e1#yr2!%rajjke!ck6tpi(rq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["vivalaradio.ru", "54.237.188.235", "www.vivalaradio.ru"]
 
 SITE_ID = 1
 # Application definition
