@@ -3,6 +3,5 @@ Disallow: /admin/
 Disallow: /cgi-bin
 Disallow: /css
 Disallow: /images/
-Host: www.vivalaradio.ru
 Host: vivalaradio.ru
 Sitemap: http://vivalaradio.ru/sitemap.xml
