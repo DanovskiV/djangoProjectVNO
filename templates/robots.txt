@@ -1,7 +1,7 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /cgi-bin
-Disallow: /css
+Allow: /css
 Disallow: /images/
 Host: vivalaradio.ru
 Sitemap: http://vivalaradio.ru/sitemap.xml
