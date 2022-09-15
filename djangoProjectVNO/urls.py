@@ -25,12 +25,12 @@ sitemaps = {
 }
 
 urlpatterns = [
+    url(r'^ckeditor', include('ckeditor_uploader.urls')),
     url('admin/', admin.site.urls),
     url(r'^', include(('blog.urls', 'blog'), namespace='blog')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^account/', include('account.urls')),
     # url(r'^account/', include('django.contrib.auth.urls')),
-    url(r'^ckeditor', include('ckeditor_uploader.urls')),
     url(r'^questions/', include(('questions.urls', 'questions'), namespace="questions")),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 ]
