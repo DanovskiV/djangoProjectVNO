@@ -30,8 +30,13 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^account/', include('account.urls')),
     # url(r'^account/', include('django.contrib.auth.urls')),
-    url(r'^media/', include('ckeditor_uploader.urls')),
     url(r'^ckeditor', include('ckeditor_uploader.urls')),
     url(r'^questions/', include(('questions.urls', 'questions'), namespace="questions")),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+# serving media files only on debug mode
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT
+        }),
 ]

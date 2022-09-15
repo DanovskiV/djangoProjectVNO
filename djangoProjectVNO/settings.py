@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ris9-+id68+4(5_=&dn-zm*d89e1#yr2!%rajjke!ck6tpi(rq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = false
 
-ALLOWED_HOSTS = ["vivalaradio.ru", "54.237.188.235", "www.vivalaradio.ru"]
+ALLOWED_HOSTS = ["vivalaradio.ru", "104.21.74.198", "www.vivalaradio.ru"]
 
 SITE_ID = 1
 # Application definition
@@ -146,10 +146,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# STATIC_DIR = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [
-#     "static"
-# ]
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+     "static"
+ ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
