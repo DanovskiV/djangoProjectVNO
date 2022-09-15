@@ -7,6 +7,7 @@ from .models import Post, Comment
 
 
 class PostAdmin(admin.ModelAdmin):
+    form = NewsAdminForm
     list_display = ('title', 'slug', 'author', 'publish', 'status')
     list_filter = ('status', 'created', 'publish', 'author')
     search_fields = ('title', 'body')
@@ -17,6 +18,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
+    form = NewsAdminForm
     list_display = ('name', 'email', 'post', 'created', 'active')
     list_filter = ('active', 'created', 'updated')
     search_fields = ('name', 'email', 'body')
