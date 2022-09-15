@@ -154,8 +154,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
-
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -164,6 +162,13 @@ WHITENOISE_MIMETYPES = {
     '.xsl': 'application/xml',
     '.css': 'text/css'
 }
+
+    ####################################
+        ##  CKEDITOR CONFIGURATION ##
+    ####################################
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
 
 CKEDITOR_CONFIGS = {
     'default': {
