@@ -19,13 +19,28 @@ from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
 from django.urls import path
 from django.views.generic.base import TemplateView
+### Добавлено с образца. Начало
+from django.contrib.admin.views.decorators import staff_member_required
+from django.urls import re_path
+from django.views.decorators.cache import never_cache
+
+from . import views
+### Добавлено с образца. Конец
 
 sitemaps = {
     'posts': PostSitemap,
 }
 
 urlpatterns = [
-    
+### Добавлено с образца. Начало
+      re_path(r"^upload/", staff_member_required(views.upload), name="ckeditor_upload"),#
+    re_path(#
+        r"^browse/",#
+        never_cache(staff_member_required(views.browse)),#
+        name="ckeditor_browse",#
+    ),#
+### Добавлено с образца. Конец
+
     url('admin/', admin.site.urls),
     url(r'^ckeditor', include('ckeditor_uploader.urls')),
     url(r'^', include(('blog.urls', 'blog'), namespace='blog')),
