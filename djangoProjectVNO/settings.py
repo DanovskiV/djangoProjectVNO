@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ris9-+id68+4(5_=&dn-zm*d89e1#yr2!%rajjke!ck6tpi(rq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = false
 
 ALLOWED_HOSTS = ["vivalaradio.ru", "104.21.74.198", "www.vivalaradio.ru"]
 
